@@ -6,15 +6,17 @@ public class PlayerMovement: MonoBehaviour
 {
     [Header("Movement")]
     private float moveSpeed;
-    public float walkSpeed;
-    public float sprintSpeed;
+    public float walkSpeed = 5f;
+    public float sprintSpeed=10f;
 
-    public float groundDrag;
+    public float groundDrag=5f;
 
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
+    public float jumpForce = 8f;
+    public float jumpCooldown=0.25f;
+    public float airMultiplier = 0.5f;
     bool readytoJump;
+
+    bool sprintActive=false;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -22,7 +24,7 @@ public class PlayerMovement: MonoBehaviour
 
 
     [Header("Ground Check")]
-    public float playerHeight;
+    public float playerHeight=2f;
     public LayerMask whatIsground;
     bool grounded;
 
@@ -76,6 +78,16 @@ public class PlayerMovement: MonoBehaviour
 
     private void MyInput()
     {
+        if (Input.GetKeyDown(sprintKey) && Input.GetKey(KeyCode.W))
+        {
+            sprintActive = !sprintActive;
+        }
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            sprintActive = false;
+        }
+      
+            
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -94,7 +106,7 @@ public class PlayerMovement: MonoBehaviour
     }
     private void StateHandler()
     {
-        if(grounded && Input.GetKey(sprintKey))
+        if(grounded && sprintActive)
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
