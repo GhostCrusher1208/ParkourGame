@@ -7,6 +7,7 @@ public class StartGame : MonoBehaviour
 {
     public void StartGamee()
     {
+        Resume.gameIsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
