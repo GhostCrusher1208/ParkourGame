@@ -229,6 +229,7 @@ public class PlayerMovement: MonoBehaviour
     {
         return Vector3.ProjectOnPlane(moveDirection,slopeHit.normal).normalized;
     }
+<<<<<<< HEAD
     private void checkcrouch()
     {
 
@@ -239,4 +240,6 @@ public class PlayerMovement: MonoBehaviour
     }
 
 
+=======
+>>>>>>> d6f529aa091a64e5c814db29902f20569a6d2479
 }
