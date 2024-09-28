@@ -80,6 +80,7 @@ public class PlayerMovement: MonoBehaviour
 
         MyInput();
         SpeedControl();
+        checkcrouch();
         StateHandler();
 
         //handle drag
@@ -228,4 +229,16 @@ public class PlayerMovement: MonoBehaviour
     {
         return Vector3.ProjectOnPlane(moveDirection,slopeHit.normal).normalized;
     }
+
+    private void checkcrouch()
+    {
+
+        if (iscrouching == true)
+        {
+            sprintActive = false;
+        }
+    }
+
+
+
 }
