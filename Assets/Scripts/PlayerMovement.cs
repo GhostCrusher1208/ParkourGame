@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement: MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed = 5f;
-    public float sprintSpeed=10f;
+    public float sprintSpeed = 10f;
 
-    public float groundDrag=5f;
+    public float groundDrag = 5f;
 
     public float jumpForce = 8f;
-    public float jumpCooldown=0.25f;
+    public float jumpCooldown = 0.25f;
     public float airMultiplier = 0.5f;
     bool readytoJump;
 
-    bool sprintActive=false;
+    bool sprintActive = false;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -25,7 +25,7 @@ public class PlayerMovement: MonoBehaviour
 
 
     [Header("Ground Check")]
-    public float playerHeight=2f;
+    public float playerHeight = 2f;
     public LayerMask whatIsground;
     bool grounded;
 
@@ -63,7 +63,7 @@ public class PlayerMovement: MonoBehaviour
     void Start()
     {
         readytoJump = true;
-        rb= GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         startYscale = transform.localScale.y;
     }
@@ -110,7 +110,7 @@ public class PlayerMovement: MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
             iscrouching = false;
-          
+
         }
 
 
@@ -118,7 +118,7 @@ public class PlayerMovement: MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         //when to jump
-        if(Input.GetKey(jumpKey) && readytoJump && grounded)
+        if (Input.GetKey(jumpKey) && readytoJump && grounded)
         {
             readytoJump = false;
 
@@ -132,20 +132,20 @@ public class PlayerMovement: MonoBehaviour
     }
     private void StateHandler()
     {
-        if (Input.GetKey(crouchKey)) 
+        if (Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
-            
+
             moveSpeed = crouchingspeed;
 
         }
-        if(grounded && sprintActive)
+        if (grounded && sprintActive)
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
 
         }
-        else if(grounded && !iscrouching)
+        else if (grounded && !iscrouching)
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;
@@ -160,23 +160,23 @@ public class PlayerMovement: MonoBehaviour
     {
 
         //calculate movement direction
-        moveDirection = orientation.forward*verticalInput+ orientation.right*horizontalInput;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (OnSlope() && !exitingslope)
         {
             rb.AddForce(GetSlopeMovmentDirection() * moveSpeed * 20f, ForceMode.Force);
-            if (rb.velocity.y> 0)
+            if (rb.velocity.y > 0)
             {
                 rb.AddForce(Vector3.down * 80, ForceMode.Force);
             }
         }
         //on ground
         if (grounded)
-            rb.AddForce(moveDirection.normalized*moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         //in air
-        else if(!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f* airMultiplier, ForceMode.Force);
+        else if (!grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
     }
     private void SpeedControl()
@@ -199,21 +199,21 @@ public class PlayerMovement: MonoBehaviour
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
-       
+
 
     }
     private void Jump()
     {
         exitingslope = true;
         //reset y velocitiy
-        rb. velocity= new Vector3(rb.velocity.x,0f,rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
 
     }
     private void ResetJump()
     {
-        exitingslope=false;
+        exitingslope = false;
         readytoJump = true;
     }
     private bool OnSlope()
@@ -227,7 +227,7 @@ public class PlayerMovement: MonoBehaviour
     }
     private Vector3 GetSlopeMovmentDirection()
     {
-        return Vector3.ProjectOnPlane(moveDirection,slopeHit.normal).normalized;
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
     private void checkcrouch()
@@ -242,3 +242,4 @@ public class PlayerMovement: MonoBehaviour
 
 
 }
+
