@@ -45,7 +45,7 @@ public class Resume : MonoBehaviour
         
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Efe");
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
