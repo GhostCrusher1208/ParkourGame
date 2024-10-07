@@ -45,7 +45,7 @@ public class TimeSlow : MonoBehaviour
             }
 
         }
-        Debug.Log(isTimeSlowed);
+       
     }
 }
 
