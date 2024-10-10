@@ -92,9 +92,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void MyInput()
     {
-        if (Input.GetKeyDown(sprintKey) && Input.GetKey(KeyCode.W))
+        if (Input.GetKey(sprintKey)&& Input.GetKey(KeyCode.W)) 
         {
-            sprintActive = !sprintActive;
+            sprintActive=true;
+        }
+        else
+        {
+            sprintActive = false;
         }
         if (Input.GetKeyUp(KeyCode.W))
         {

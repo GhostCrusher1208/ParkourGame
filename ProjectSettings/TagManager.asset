@@ -4,12 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-
-  - PlayerObj
-
   - Kus
-  - Truck
-
   layers:
   - Default
   - TransparentFX
@@ -17,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Ground
   - 
   - 
-  - whatIsGround
   - 
   - 
   - 

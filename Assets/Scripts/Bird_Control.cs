@@ -11,8 +11,6 @@ public class Bird_Control : MonoBehaviour
     {
         if (other.gameObject == Player)
         {
-
-
             Player.transform.parent = Bird.transform;
         }
     }
