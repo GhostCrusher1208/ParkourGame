@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-
-  - PlayerObj
-
   - Kus
-  - Truck
-
+  - cactus
   layers:
   - Default
   - TransparentFX
@@ -17,9 +13,9 @@ TagManager:
   - 
   - Water
   - UI
+  - slideGround
+  - cactus
   - 
-  - 
-  - whatIsGround
   - 
   - 
   - 
