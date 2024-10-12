@@ -38,11 +38,10 @@ public class SlideMovment : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(slideKey) && (verticalInput != 0 && verticalInput != -1)|| (pm.OnSlope()))
+        if (Input.GetKey(slideKey) && ((verticalInput != 0 && verticalInput != -1)|| (pm.OnSlope())) && !pm.sliding)
             StartSlide();
 
-        if (Input.GetKeyUp(slideKey) && pm.sliding && !pm.OnSlope())
-            StopSlide();
+       
     }
 
     private void FixedUpdate()
